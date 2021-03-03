@@ -7,6 +7,41 @@
 <body>
 		<!-- Your code goes here-->
 
+<div class="content" id="experiment-article-section-4-content">
+                            <h4 style="text-align: center; text-decoration: underline;">A simulator for SHA-1</h4>
+                            <p>Plaintext (string): </p>
+                            <p>
+                                <input id="input" name="user_input" size="40" type="text" value="test"/> </p>
+                            <p>
+                                <input onclick="document.getElementById('hash_value').value = hex_sha1(document.getElementById('input').value)" type="button" value="SHA-1"/>
+                            </p>
+                            <br/>
+                            <p>Hash output(hex):</p>
+                            <p>
+                                <input id="hash_value" readonly="true" size="40" type="text" value=""/>
+                            </p>
+                            <br/>
+                        
+                            <h4 style="text-align: center; font-weight: bold; text-decoration: underline;">HMAC Construction using a "Dummy" Hash Function<br/>
+<br/></h4>
+                            <br/>
+                            <p><b>HMAC construction</b></p>
+                            <pre>   Plaintext: <textarea cols="50" id="plaintext" name="plaintext" rows="4">1100000000111100101010</textarea>   <input name="changePlainText" onclick="next_plain_text()" type="button" value="Next Plaintext"/> <br/>
+length of Initialization Vector (IV), l, <textarea cols="4" id="l" name="l" rows="1">8</textarea> <br/>
+          IV: <textarea cols="50" id="iv" name="iv" rows="1">11001100</textarea>   <input name="changeIV" onclick="next_IV()" type="button" value="Next IV"/><br/><br/><br/>
+      Key, k: <textarea cols="50" id="key" name="key" rows="1">10000101</textarea>   <input name="changeKey" onclick="next_Key()" type="button" value="Next Key"/><br/><br/><br/>
+ipad: 0x5C (01011100)
+opad: 0x36 (00110110) <br/>
+Put your text of size 2l to get the corresponding value of hash of size l.<br/>
+   Your text: <textarea cols="50" id="usertext" name="usertext" rows="1">11001010</textarea>   <input name="getHash" onclick="get_hash()" type="button" value="get hash"/>
+Hashed value: <textarea cols="50" id="hashvalue" name="hashvalue" readonly="readonly" rows="1">0011</textarea><br/><br/>
+Final Output: <textarea cols="50" id="cipherarea" name="output" rows="1"></textarea>  <input name="checkAnswer" onclick="checkAnswer()" type="button" value="Check Answer!"/>
+<div id="notification" style="width: 300px; height: 10px; padding-top: 20px;"></div>
+<br/><br/></pre>
+                            
+                        </div>
+
+		
 	<!-- Add JS at the bottom of HTML file --> 
         <script src="./js/main.js"></script>
 </body>

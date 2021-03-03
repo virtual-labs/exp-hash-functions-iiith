@@ -1,1 +1,1 @@
-### Aim of the experiment
+SHA-1 is a popular heuristic hash function that is currently in vogue. In this experiment, we shall familiarize ourselves with SHA-1 as well as look at one important applaication of hashing, namely, the HMAC algorithm which is currently used in the Internet to achieve data integrity
