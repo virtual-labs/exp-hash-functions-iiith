@@ -37,7 +37,7 @@
     {
       "target": "assignment.html",
       "source": "assignment.md",
-      "label": : "Assignment",
+      "label": "Assignment",
       "unit-type": "task",
       "content-type": "text"
     },
