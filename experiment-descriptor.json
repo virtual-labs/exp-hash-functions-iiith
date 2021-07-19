@@ -23,7 +23,7 @@
     {
       "target": "pretest.html",
       "source": "pretest.md",
-      "label": : "Pretest",
+      "label": "Pretest",
       "unit-type": "task",
       "content-type": "Assessment"
     },
