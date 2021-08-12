@@ -1,4 +1,4 @@
-1. Which criterion ensures that we can¡¯t find two messages that hash to the same digest?  
+1. Which criterion ensures that we can't find two messages that hash to the same digest?  
   (a) One-wayness  
   (b) Weak-collision-resistance  
   (c) Strong-collision-resistance   
