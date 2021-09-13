@@ -1,1 +1,1 @@
-To understand the need,design and applications of collision resistant hash functions. 
+- To understand the need,design and applications of collision resistant hash functions. 
