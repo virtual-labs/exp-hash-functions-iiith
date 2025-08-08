@@ -287,3 +287,37 @@ function showHMACSteps() {
 
   document.getElementById("hmac-steps").innerHTML = steps;
 }
+
+// Summary table update function
+function updateSummary() {
+  try {
+    // Update summary table with current values
+    var message = document.getElementById("plaintext").value || "-";
+    var blockSize = document.getElementById("l").value || "-";
+    var key = document.getElementById("key").value || "-";
+    var iv = document.getElementById("iv").value || "-";
+    var hmacTag = document.getElementById("cipherarea").value || "-";
+
+    // Update summary table cells
+    document.getElementById("summary-message").textContent = message;
+    document.getElementById("summary-blocksize").textContent = blockSize;
+    document.getElementById("summary-key").textContent = key;
+    document.getElementById("summary-iv").textContent = iv;
+    document.getElementById("summary-hmac").textContent = hmacTag;
+
+    // Show notification
+    var notification = document.getElementById("notification");
+    if (notification) {
+      notification.className = "notification info";
+      notification.textContent = "✅ Summary table updated successfully!";
+
+      // Clear notification after 3 seconds
+      setTimeout(function () {
+        notification.textContent = "";
+        notification.className = "";
+      }, 3000);
+    }
+  } catch (error) {
+    console.error("Error updating summary:", error);
+  }
+}
