@@ -1,3 +1,6 @@
-- [Wikipedia](https://en.wikipedia.org/wiki/HMAC)
-- Introduction to Modern Cryptography by Jonathan Katz and Yehuda Lindell.
-
+- [Wikipedia - HMAC (Hash-based Message Authentication Code)](https://en.wikipedia.org/wiki/HMAC)
+- [Wikipedia - Cryptographic Hash Functions](https://en.wikipedia.org/wiki/Cryptographic_hash_function)
+- [RFC 2104 - HMAC: Keyed-Hashing for Message Authentication](https://tools.ietf.org/html/rfc2104)
+- [NIST FIPS 180-4 - Secure Hash Standard (SHS)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
+- [NIST FIPS 198-1 - The Keyed-Hash Message Authentication Code (HMAC)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.198-1.pdf)
+- [IETF RFC 6234 - US Secure Hash Algorithms](https://tools.ietf.org/html/rfc6234)
