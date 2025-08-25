@@ -25,7 +25,12 @@
   function showMobileOverlay() {
     const overlay = document.getElementById("mobile-overlay");
     if (overlay) {
+      console.log(
+        "[DEBUG] showMobileOverlay called, overlay found, setting display:block"
+      );
       overlay.style.display = "block";
+    } else {
+      console.log("[DEBUG] showMobileOverlay called, overlay NOT found");
     }
   }
 
@@ -40,9 +45,9 @@
   // Check if we should show mobile warning
   function shouldShowMobileWarning() {
     // Show warning if:
-    // 1. It's a mobile device AND in portrait mode, OR
-    // 2. Screen width is very small (< 768px)
-    return (isMobileDevice() && isPortraitMode()) || isSmallScreen();
+    // 1. It's a mobile device (portrait or landscape)
+    // 2. Or, screen width is very small (< 480px)
+    return isMobileDevice() || window.innerWidth < 480;
   }
 
   // Main detection function
