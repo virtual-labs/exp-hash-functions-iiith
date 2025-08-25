@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Add CSS at the head of HTML file -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <!-- Your code goes here-->
+
+    <div class="content" id="experiment-article-section-4-content">
+      <!-- SHA-1 Demonstration Section -->
+      <h3>🔐 SHA-1 Hash Function Demonstration</h3>
+      <div
+        class="sha1-section"
+        style="
+          background: #f0f8ff;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+          border: 2px solid #4a90e2;
+        "
+      >
+        <div
+          class="explanation"
+          style="
+            background: #e8f4fd;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+            margin-bottom: 15px;
+          "
+        >
+          SHA-1 takes any input and produces a fixed 160-bit (40 hex characters)
+          hash value. Try different inputs to see how even small changes produce
+          completely different hashes.
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse">
+          <tr>
+            <td
+              style="
+                width: 20%;
+                font-weight: bold;
+                padding: 8px;
+                vertical-align: middle;
+              "
+            >
+              <strong>Plaintext (string):</strong>
+            </td>
+            <td style="width: 60%; padding: 8px">
+              <input
+                id="input"
+                name="user_input"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  font-family: monospace;
+                "
+                type="text"
+                value="test"
+              />
+            </td>
+            <td style="width: 20%; padding: 8px; text-align: center">
+              <button
+                onclick="document.getElementById('hash_value').value = hex_sha1(document.getElementById('input').value)"
+                style="
+                  background: #28a745;
+                  color: white;
+                  border: none;
+                  padding: 8px 12px;
+                  border-radius: 4px;
+                  cursor: pointer;
+                "
+                type="button"
+              >
+                Calculate SHA-1
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: bold; padding: 8px; vertical-align: middle">
+              <strong>SHA-1 Hash output (hex):</strong>
+            </td>
+            <td style="padding: 8px">
+              <input
+                id="hash_value"
+                readonly="true"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  font-family: monospace;
+                  background-color: #f8f9fa;
+                "
+                type="text"
+                value=""
+              />
+            </td>
+            <td style="padding: 8px"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- HMAC Construction Section -->
+      <h3>🔒 HMAC Construction (Simplified Educational Version)</h3>
+      <div
+        class="hmac-section"
+        style="
+          background: #f8f9fa;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 15px 0;
+        "
+      >
+        <div
+          class="explanation"
+          style="
+            background: #e8f4fd;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+            margin-bottom: 15px;
+          "
+        >
+          HMAC combines a hash function with a secret key to provide both data
+          integrity and authentication. This simulation uses a simplified
+          "dummy" hash function for educational purposes.
+        </div>
+
+        <!-- Step 1: Parameters Setup -->
+        <div
+          class="step1-section"
+          style="
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+          "
+        >
+          <h4>📝 Step 1: Setup Parameters</h4>
+
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
+                  width: 20%;
+                  font-weight: bold;
+                  padding: 8px;
+                  vertical-align: middle;
+                "
+              >
+                <strong>Message (binary):</strong><br />
+                <small style="color: #666"
+                  >Binary message to be authenticated</small
+                >
+              </td>
+              <td style="width: 60%; padding: 8px">
+                <textarea
+                  cols="50"
+                  id="plaintext"
+                  name="plaintext"
+                  rows="2"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                    resize: vertical;
+                  "
+                >
+1100000000111100101010</textarea
+                >
+              </td>
+              <td style="width: 20%; padding: 8px; text-align: center">
+                <button
+                  name="changePlainText"
+                  onclick="next_plain_text()"
+                  style="
+                    background: #17a2b8;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  "
+                  type="button"
+                >
+                  Generate Random Message
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="font-weight: bold; padding: 8px; vertical-align: middle"
+              >
+                <strong>Block size (l):</strong><br />
+                <small style="color: #666"
+                  >Hash function block size (must be ≥ 8)</small
+                >
+              </td>
+              <td style="padding: 8px">
+                <input
+                  id="l"
+                  name="l"
+                  type="number"
+                  value="8"
+                  min="8"
+                  max="16"
+                  style="
+                    width: 100px;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                />
+              </td>
+              <td style="padding: 8px"></td>
+            </tr>
+            <tr>
+              <td
+                style="font-weight: bold; padding: 8px; vertical-align: middle"
+              >
+                <strong>Initialization Vector (IV):</strong><br />
+                <small style="color: #666"
+                  >Random initialization vector of length l</small
+                >
+              </td>
+              <td style="padding: 8px">
+                <textarea
+                  cols="20"
+                  id="iv"
+                  name="iv"
+                  rows="1"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                    resize: vertical;
+                  "
+                >
+11001100</textarea
+                >
+              </td>
+              <td style="padding: 8px; text-align: center">
+                <button
+                  name="changeIV"
+                  onclick="next_IV()"
+                  style="
+                    background: #fd7e14;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  "
+                  type="button"
+                >
+                  Generate Random IV
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="font-weight: bold; padding: 8px; vertical-align: middle"
+              >
+                <strong>Secret Key (k):</strong><br />
+                <small style="color: #666">Secret key of length l</small>
+              </td>
+              <td style="padding: 8px">
+                <textarea
+                  cols="20"
+                  id="key"
+                  name="key"
+                  rows="1"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                    resize: vertical;
+                  "
+                >
+10000101</textarea
+                >
+              </td>
+              <td style="padding: 8px; text-align: center">
+                <button
+                  name="changeKey"
+                  onclick="next_Key()"
+                  style="
+                    background: #6c757d;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  "
+                  type="button"
+                >
+                  Generate Random Key
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Step 2: Hash Function Testing -->
+        <div
+          class="step2-section"
+          style="
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+          "
+        >
+          <h4>🧮 Step 2: Test the Dummy Hash Function</h4>
+          <div
+            class="explanation"
+            style="
+              background: #e8f4fd;
+              padding: 10px;
+              border-radius: 4px;
+              border-left: 3px solid #3498db;
+              margin-bottom: 15px;
+            "
+          >
+            Our simplified hash function XORs adjacent bit pairs: H(b1b2b3b4) =
+            (b1⊕b2)(b3⊕b4)
+          </div>
+
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
+                  width: 20%;
+                  font-weight: bold;
+                  padding: 8px;
+                  vertical-align: middle;
+                "
+              >
+                <strong>Test Input (2l bits):</strong><br />
+                <small style="color: #666"
+                  >Input must be exactly 2l bits (16 bits for l=8)</small
+                >
+              </td>
+              <td style="width: 60%; padding: 8px">
+                <textarea
+                  cols="20"
+                  id="usertext"
+                  name="usertext"
+                  rows="1"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                    resize: vertical;
+                  "
+                >
+1100101011001010</textarea
+                >
+              </td>
+              <td style="width: 20%; padding: 8px; text-align: center">
+                <button
+                  name="getHash"
+                  onclick="get_hash()"
+                  style="
+                    background: #007bff;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                  "
+                  type="button"
+                >
+                  Calculate Hash
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="font-weight: bold; padding: 8px; vertical-align: middle"
+              >
+                <strong>Hash Output (l bits):</strong><br />
+                <small style="color: #666"
+                  >Result of applying the hash function</small
+                >
+              </td>
+              <td style="padding: 8px">
+                <textarea
+                  cols="20"
+                  id="hashvalue"
+                  name="hashvalue"
+                  readonly="readonly"
+                  rows="1"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                    background-color: #f8f9fa;
+                    resize: vertical;
+                  "
+                ></textarea>
+              </td>
+              <td style="padding: 8px"></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Step 3: HMAC Calculation Guide -->
+        <div
+          class="step3-section"
+          style="
+            background: #e2e3e5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #6c757d;
+          "
+        >
+          <h4>📚 Step 3: HMAC Calculation Guide</h4>
+          <div
+            class="explanation"
+            style="
+              background: #e8f4fd;
+              padding: 10px;
+              border-radius: 4px;
+              border-left: 3px solid #3498db;
+              margin-bottom: 15px;
+            "
+          >
+            HMAC follows this process:<br />
+            1. ipad = 01011100, opad = 00110110<br />
+            2. Inner hash: H(IV || (k ⊕ ipad) || padded_message || length)<br />
+            3. Outer hash: H(IV || (k ⊕ opad) || inner_hash_result)
+          </div>
+
+          <div
+            class="calculation-helper"
+            style="
+              background: #f8f9fa;
+              padding: 15px;
+              border-radius: 6px;
+              border: 1px solid #dee2e6;
+            "
+          >
+            <table style="width: 100%; border-collapse: collapse">
+              <tr>
+                <td
+                  style="
+                    width: 20%;
+                    font-weight: bold;
+                    padding: 8px;
+                    vertical-align: middle;
+                  "
+                >
+                  <strong>🧪 Calculation Helper:</strong>
+                </td>
+                <td style="width: 60%; padding: 8px">
+                  <div
+                    id="hmac-steps"
+                    style="
+                      min-height: 50px;
+                      padding: 8px;
+                      border: 1px solid #ccc;
+                      border-radius: 4px;
+                      background-color: white;
+                      font-family: monospace;
+                      font-size: 12px;
+                    "
+                  ></div>
+                </td>
+                <td style="width: 20%; padding: 8px; text-align: center">
+                  <button
+                    onclick="showHMACSteps()"
+                    style="
+                      background: #20c997;
+                      color: white;
+                      border: none;
+                      padding: 8px 12px;
+                      border-radius: 4px;
+                      cursor: pointer;
+                    "
+                    type="button"
+                  >
+                    Show Step-by-Step Calculation
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Step 4: Final Answer -->
+        <div
+          class="step4-section"
+          style="
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
+          "
+        >
+          <h4>🎯 Step 4: Enter Final HMAC Result</h4>
+
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
+                  width: 20%;
+                  font-weight: bold;
+                  padding: 8px;
+                  vertical-align: middle;
+                "
+              >
+                <strong>Final HMAC Tag:</strong><br />
+                <small style="color: #666"
+                  >Enter the final HMAC authentication tag</small
+                >
+              </td>
+              <td style="width: 60%; padding: 8px">
+                <textarea
+                  cols="20"
+                  id="cipherarea"
+                  name="output"
+                  rows="1"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-family: monospace;
+                    resize: vertical;
+                  "
+                ></textarea>
+              </td>
+              <td style="width: 20%; padding: 8px; text-align: center">
+                <button
+                  name="checkAnswer"
+                  onclick="checkAnswer()"
+                  style="
+                    background: #dc3545;
+                    color: white;
+                    border: none;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-weight: bold;
+                  "
+                  type="button"
+                >
+                  Check Answer
+                </button>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            id="notification"
+            style="
+              padding: 10px;
+              margin: 10px 0;
+              font-weight: bold;
+              border-radius: 5px;
+              text-align: center;
+              min-height: 20px;
+              transition: all 0.3s ease;
+            "
+          ></div>
+        </div>
+
+        <!-- Results Summary Table -->
+        <div
+          class="result-section"
+          style="
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
+          "
+        >
+          <h4>📊 Summary of Results</h4>
+          <table
+            style="width: 100%; border-collapse: collapse; margin-top: 10px"
+          >
+            <tr style="background: #17a2b8; color: white">
+              <th
+                style="
+                  padding: 10px;
+                  text-align: left;
+                  border: 1px solid #dee2e6;
+                "
+              >
+                Parameter
+              </th>
+              <th
+                style="
+                  padding: 10px;
+                  text-align: left;
+                  border: 1px solid #dee2e6;
+                "
+              >
+                Value
+              </th>
+            </tr>
+            <tr style="background: white">
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-weight: bold;
+                "
+              >
+                Message
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-family: monospace;
+                "
+                id="summary-message"
+              >
+                -
+              </td>
+            </tr>
+            <tr style="background: #f8f9fa">
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-weight: bold;
+                "
+              >
+                Block Size (l)
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-family: monospace;
+                "
+                id="summary-blocksize"
+              >
+                -
+              </td>
+            </tr>
+            <tr style="background: white">
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-weight: bold;
+                "
+              >
+                Secret Key
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-family: monospace;
+                "
+                id="summary-key"
+              >
+                -
+              </td>
+            </tr>
+            <tr style="background: #f8f9fa">
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-weight: bold;
+                "
+              >
+                Initialization Vector
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-family: monospace;
+                "
+                id="summary-iv"
+              >
+                -
+              </td>
+            </tr>
+            <tr style="background: white">
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-weight: bold;
+                "
+              >
+                Final HMAC Tag
+              </td>
+              <td
+                style="
+                  padding: 8px;
+                  border: 1px solid #dee2e6;
+                  font-family: monospace;
+                "
+                id="summary-hmac"
+              >
+                -
+              </td>
+            </tr>
+          </table>
+          <div style="margin-top: 10px; text-align: center">
+            <button
+              onclick="updateSummary()"
+              style="
+                background: #17a2b8;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+              "
+              type="button"
+            >
+              Update Summary
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Detection Overlay -->
+    <div
+      id="mobile-overlay"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 9999;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+      "
+    >
+      <div style="text-align: center; margin-top: 50px">
+        <h2 style="color: #ffc107; margin-bottom: 20px">
+          📱 Mobile Device Detected
+        </h2>
+        <div
+          style="
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+          "
+        >
+          <p style="font-size: 16px; line-height: 1.6">
+            This cryptography simulation is optimized for desktop computers and
+            tablets in landscape mode for the best learning experience.
+          </p>
+          <p style="font-size: 14px; color: #ffc107; margin-top: 15px">
+            For optimal viewing:
+          </p>
+          <ul style="text-align: left; margin: 10px 0; padding-left: 20px">
+            <li>Use a desktop or laptop computer</li>
+            <li>Rotate your tablet to landscape mode</li>
+            <li>Use a larger screen device if possible</li>
+          </ul>
+        </div>
+        <button
+          onclick="document.getElementById('mobile-overlay').style.display='none'"
+          style="
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+          "
+        >
+          Continue Anyway
+        </button>
+      </div>
+    </div>
+
+    <!-- Add JS at the bottom of HTML file -->
+    <script src="js/mobile-detection.js" type="text/javascript"></script>
+    <script src="js/hmac.js" type="application/javascript"></script>
+    <script
+      language="JavaScript"
+      src="js/sha1.js"
+      type="text/javascript"
+    ></script>
+    <script
+      language="JavaScript"
+      src="js/base64.js"
+      type="text/javascript"
+    ></script>
+  <script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
